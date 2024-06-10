@@ -93,6 +93,7 @@ handler_txtprogressbar <- function(char = "=", style = 3L, file = stderr(), intr
       hide = function(...) {
         cat('hiding!')
         flush.console()
+        return()
         if (is.null(pb)) return()
         eraseTxtProgressBar(pb)
       },
@@ -100,6 +101,7 @@ handler_txtprogressbar <- function(char = "=", style = 3L, file = stderr(), intr
       unhide = function(...) {
         cat('unhiding!')
         flush.console()
+        return()
         if (is.null(pb)) return()
         redrawTxtProgressBar(pb)
       },
@@ -128,14 +130,15 @@ handler_txtprogressbar <- function(char = "=", style = 3L, file = stderr(), intr
       update = function(config, state, progression, ...) {
         cat('update!')
         flush.console()
-        if (!state$enabled || config$times == 1L) return()
+        # if (!state$enabled || config$times == 1L) return()
         make_pb(max = config$max_steps, file = file)
-        if (inherits(progression, "sticky")) {
-          eraseTxtProgressBar(pb)
-          message(paste0(state$message, ""))
-          redrawTxtProgressBar(pb)
-        }
-        if (progression$amount == 0) return()
+        # if (inherits(progression, "sticky")) {
+        #   eraseTxtProgressBar(pb)
+        #   message(paste0(state$message, ""))
+        #   redrawTxtProgressBar(pb)
+        # }
+        # if (progression$amount == 0) return()
+        message('hello\n')
         cat("\r",state$step,"               ")
         flush.console()
         # setTxtProgressBar(pb, value = state$step)
