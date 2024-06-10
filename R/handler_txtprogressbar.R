@@ -126,7 +126,9 @@ handler_txtprogressbar <- function(char = "=", style = 3L, file = stderr(), intr
           redrawTxtProgressBar(pb)
         }
         if (progression$amount == 0) return()
-        setTxtProgressBar(pb, value = state$step)
+        cat("\r",state$step,"               ")
+        flush.console()
+        # setTxtProgressBar(pb, value = state$step)
       },
         
       finish = function(config, state, progression, ...) {
